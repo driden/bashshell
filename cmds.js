@@ -1,51 +1,53 @@
 const fs = require('fs')
 
-exports.ls = function () {
-    const dir = args[0]
+exports.ls = function (done,args) {
+    let result = ''
+    const dir = args[0] || '.'
     fs.readdir(dir, (err, files) => {
         if (err)
-            writeStream(err.message)
+            result = err.message
         else {
-            writeStream(files.join('\n'))
-        }
-        writePrompt()
-    })
+            result = files.join('\n')
+        }        
+        done(result)
+    })    
 }
 
-exports.head = function () {
+exports.head = function (done,args) {
+    let result = ''
     const file2 = args[0]
     fs.readFile(file2, 'utf8', function (err, data) {
         if (err)
-            writeStream(err.message)
+            result = err.message
         else {
-            const head = data
+            result = data
                 .split('\n')
                 .slice(0, 10)
                 .join('\n');
-            writeStream(head);
+
         }
-        writePrompt()
+        done(result)
     })
 }
 
-exports.quit = function () { process.exit() }
+exports.quit = function (args) { process.exit() }
 
-exports.cat = function () {
+exports.cat = function (done, args) {
     const file = args[0];
     let result = ''
     fs.readFile(file, 'utf8', function (err, data) {
         if (err)
             result = err.message
         else
-            result = data        
-    })
-    done(result)
+            result = data
+        done(result)
+    })    
 }
 
-exports.pwd = function () {
+exports.pwd = function (done, args) {
     done(process.stdout.write(__dirname));
 }
 
-exports.date = function () {
+exports.date = function (done, args) {
     done(Date.now.toString())
 }

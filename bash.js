@@ -6,9 +6,9 @@ const prompt = '$> '
 function done(result) {
     process.stdout.write(`${result}\n${prompt}`) 
 }
-
+process.stdout.write(`${prompt}`)
 process.stdin.on('data', function (data) {
     const cmdWArgs = data.toString().trim(); // remove the newline
     const [cmd, ...args] = cmdWArgs.split(' ')
-    cmds[cmd]()
+    cmds[cmd](done,args)
 })
