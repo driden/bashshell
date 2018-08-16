@@ -1,0 +1,23 @@
+{
+  "name": "bashshell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bash.js",
+  "dependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "watch": "nodemon bash.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/driden/bashshell.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/driden/bashshell/issues"
+  },
+  "homepage": "https://github.com/driden/bashshell#readme"
+}
